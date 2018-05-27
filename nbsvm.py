@@ -9,10 +9,10 @@ from scipy import sparse
 from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer   
 
 
-train_x = open('data/train_contents.txt',encoding = 'UTF8').read().split('\n')
-test_x = open('data/test_contents.txt',encoding = 'UTF8').read().split('\n')
-train_y = to_categorical(open('data/train_labels.txt',encoding = 'UTF8').read().split('\n'))
-test_y = open('data/test_labels.txt',encoding = 'UTF8').read().split('\n')
+train_x = open('train_contents.txt',encoding = 'UTF8').read().split('\n')
+test_x = open('test_contents.txt',encoding = 'UTF8').read().split('\n')
+train_y = to_categorical(open('train_labels.txt',encoding = 'UTF8').read().split('\n'))
+test_y = open('test_labels.txt',encoding = 'UTF8').read().split('\n')
 
 
 count_v0= CountVectorizer();  
