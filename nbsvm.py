@@ -50,15 +50,13 @@ class NbSvmClassifier(BaseEstimator, ClassifierMixin):
         # Check that X and y have correct shape
         x, y = check_X_y(x, y, accept_sparse=True)
 
-        def pr(x, y_i, y):
+        def pr(x, y_i, y):#NB
             p = x[y==y_i].sum()
-            print (p)
-            print ((y==y_i).sum())
             return (p+1) / ((y==y_i).sum()+1) 
         
-        self._r = sparse.csr_matrix(np.log(pr(x,1,y) / pr(x,0,y))) #pr(x,1,y) number of positve samples    pr(x,0,y) number of negatve samples       
+        self._r = sparse.csr_matrix(np.log(pr(x,1,y) / pr(x,0,y))) 
         x_nb = x.multiply(self._r)
-        self._clf = LogisticRegression(C=self.C, dual=self.dual, n_jobs=self.n_jobs).fit(x_nb, y)
+        self._clf = LogisticRegression(C=self.C, dual=self.dual, n_jobs=self.n_jobs).fit(x_nb, y)#SVM/LR
         return self
 
 preds = np.zeros((4324, 11))
